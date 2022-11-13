@@ -1,18 +1,38 @@
 package com.backendfullstacksys.controller;
 
-import com.backendfullstacksys.services.EmployeeServices;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.backendfullstacksys.entities.EmployeeEntity;
+import com.backendfullstacksys.model.EmployeeReqDto;
+import com.backendfullstacksys.services.EmployeeServiceImplement;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/employee/")
 
 public class EmployeeController {
 
-    private final EmployeeServices employeeServices;
+    final EmployeeServiceImplement employeeServiceImplement;
 
-    public EmployeeController(EmployeeServices employeeServices) {
-        this.employeeServices = employeeServices;
+
+    public EmployeeController(EmployeeServiceImplement employeeServiceImplement) {
+        this.employeeServiceImplement = employeeServiceImplement;
+    }
+
+    @GetMapping
+    public List<EmployeeEntity> getAll(){
+        return employeeServiceImplement.get();
+    }
+
+    @GetMapping("{id}")
+    public EmployeeEntity getById(@PathVariable Long id){
+        return employeeServiceImplement.getById(id);
+    }
+
+    @PostMapping
+    public EmployeeEntity save(@RequestBody EmployeeReqDto){
+        
     }
 }
+
+//5. Controller
