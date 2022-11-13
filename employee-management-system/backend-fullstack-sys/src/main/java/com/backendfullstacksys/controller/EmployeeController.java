@@ -29,9 +29,19 @@ public class EmployeeController {
         return employeeServiceImplement.getById(id);
     }
 
-    @PostMapping
-    public EmployeeEntity save(@RequestBody EmployeeReqDto){
-        
+    @PostMapping("save")
+    public EmployeeEntity save(@RequestBody EmployeeReqDto employeeReqDto){
+        return employeeServiceImplement.create(employeeReqDto);
+    }
+
+    @PutMapping("update/{id}")
+    public EmployeeEntity update(@RequestBody EmployeeReqDto employeeReqDto, @PathVariable Long id) {
+        return employeeServiceImplement.update(employeeReqDto, id);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void delete(@PathVariable Long id) {
+        employeeServiceImplement.delete(id);
     }
 }
 
