@@ -9,9 +9,12 @@ const AddEmployee = () => {
     emailId: "",
   });
 
-  const handleChange = (e) => {
-    const fieldValue = e.target.value;
-    setEmployee({ ...employee, [e.target.value]: fieldValue });
+  const handleOnBlur = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newEmpData = { ...employee };
+    newEmpData[field] = value;
+    setEmployee(newEmpData);
   };
 
   const saveEmployee = (e) => {
@@ -38,11 +41,10 @@ const AddEmployee = () => {
             <div className="items-center justify-center h-14 w-full my-4">
               <label className="block text-sm font-normal">First Name: </label>
               <input
-                type="text"
                 placeholder="Enter first name"
                 name="firstName"
-                // value={employee.firstName}
-                onChange={(e) => handleChange(e)}
+                type="text"
+                onBlur={handleOnBlur}
                 className="h-10 w-96 border mt-2 p-2 outline-none"
               />
             </div>
@@ -50,11 +52,10 @@ const AddEmployee = () => {
             <div className="items-center justify-center h-14 w-full my-4">
               <label className="block text-sm font-normal">Last Name: </label>
               <input
-                type="text"
                 placeholder="Enter last name"
                 name="lastName"
-                // value={employee.lastName}
-                onChange={(e) => handleChange(e)}
+                type="text"
+                onBlur={handleOnBlur}
                 className="h-10 w-96 border mt-2 p-2 outline-none"
               />
             </div>
@@ -62,11 +63,10 @@ const AddEmployee = () => {
             <div className="items-center justify-center h-14 w-full my-4">
               <label className="block text-sm font-normal">Email: </label>
               <input
-                type="text"
                 placeholder="Your email"
                 name="emailId"
-                // value={employee.emailId}
-                onChange={(e) => handleChange(e)}
+                type="email"
+                onBlur={handleOnBlur}
                 className="h-10 w-96 border mt-2 p-2 outline-none"
               />
             </div>
